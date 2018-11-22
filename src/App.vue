@@ -31,6 +31,13 @@ export default {
  *{margin:0;padding:0;}
 #app {
 
- footer{position:fixed;z-index: 50;bottom: 0;width:100%;}
+ footer{position:fixed;
+        z-index: 50;
+        width:100%;
+        left: 0;
+        bottom: 0;
+        background: #fff;
+        border-top: 1px solid #ccc;
+  }
 }
 </style>
