@@ -1,11 +1,11 @@
 <template>
   <div >
     <ul>
-      <router-link to="/home" tag="li" activeClass="active">
+		<router-link to="/home" tag="li" activeClass="active">
           <i class="iconfont icon-shouye1"></i>
           <span>首页</span>
       </router-link>
-      <router-link to="/classify" tag="li" activeClass="active">
+      <router-link to="/classi" tag="li" activeClass="active">
           <i class="iconfont icon-leimupinleifenleileibie"></i>
           <span>分类</span>
       </router-link>
