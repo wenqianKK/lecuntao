@@ -16,17 +16,17 @@
   <!--  ---------大图轮播------------ -->
 	<div class="swiper-container swiper1">
 		<div class="swiper-wrapper">
-			<div class="swiper-slide" v-for="data in advlist">
-				<img :src="data.adv_image" class="img_1"/>
+			<div class="swiper-slide">
+				<img :src="adv_img" class="img_1"/>
 			</div>
 		</div>
 	</div>
 	</div>
 	<!--  ---------小图轮播------------ -->
-	<div class="swiper-container swiper2">
-		<div class="swiper-wrapper" style="background:white">
-			<ul>
-				<li class="swiper-slide" v-for="data in datalist.list">
+	<div class="swiper-container swiper2" style="background:white" >
+		<div class="swiper-wrapper swiper_2">
+			<ul class="ul1">
+				<li class="swiper-slide li1" v-for="data in datalist.platform.list">
 					<img :src="data.cate_image" class="img_2"/>
 					<div class="s2_name">
 						{{data.cate_name}}
@@ -46,6 +46,96 @@
     		<img class="tri_img" src="../assets/lct_wap_llj.jpg">
     	</a>
     </div>
+    <!--  ---------轮播3------------ -->
+    <div class="swiper-container swiper3" style="background:white" >
+		<div class="swiper-wrapper swiper_3" >
+			<ul class="ul2">
+				<li class="swiper-slide li2" v-for="data in datalist.le6ji.recommend_goods">
+					<img :src="data.goods_image" class="img_3"/>
+					<span class="s3_name">
+						{{data.goods_name}}
+					</span>
+					<span class="span3">
+						{{data.goods_price}}
+					</span>
+				</li>
+				<li class="li2-1">
+					<a href="javascript:;" title="">
+						<img src="../assets/img_le6ji_see_all.png" class="img3-1"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	 <!--  ---------特色馆------------ -->
+    <div class="special">
+    	<img src="../assets/icon_teseguan.png" class="img4" />
+    </div>
+
+    <div class="triangle_bg2">
+    	<img class="triangle" src="../assets/sanjiao.png" /> 
+    	<a href="-" class="tri_a2">
+    		<img class="tri_img2" src="../assets/lct_wap_tsg.jpg">
+    	</a>
+    </div>
+     <!--  ---------轮播4------------ -->
+    <div class="swiper-container swiper4" style="background:white" >
+		<div class="swiper-wrapper swiper_4" >
+			<ul class="ul3">
+				<li class="swiper-slide li3" v-for="data in datalist.feature.recommend_goods">
+					<img :src="data.goods_image" class="img_4"/>
+					<span class="s4_name">
+						{{data.goods_name}}
+					</span>
+					<span class="span4">
+						{{data.goods_price}}
+					</span>
+				</li>
+				<li class="li3-1">
+					<a href="javascript:;" title="">
+						<img src="../assets/img_le6ji_see_all.png" class="img4-1"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--  ---------轮播文字------------ -->
+	<div class="swiper-container swiper5" style="background:white" >
+		<div class="swiper-wrapper swiper_5">
+			<ul class="ul4">
+				<li class="swiper-slide li4" v-for="data in datalist.category">
+					<a href="javascript:;" class="s5_name">
+						
+						{{data.cate_name}}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--  ---------电器城------------ -->
+	<div class="electrical">
+		<a href="javascript:;" class="el_line">
+			<i class="icon_l"></i> 
+			<span class="fl">电器城</span> 
+			<span>
+			<i class="icon_more"></i> 
+			<span class="fr">更多</span>
+			</span>
+		</a> 
+		<ul class="el_ul">
+			<li class="el_li" v-for="data in datalist.category_goods">
+				<a href="javascript:;" title="" class="el_a">
+					<img :src="data.goods_list.goods_image" class="el_img"/> 
+				</a>
+				<p class="pd-name">{{data.goods_list.goods_name}}</p>
+				<div class="pd-flow">
+					<span class="pd-price">{{data.goods_list.goods_price}}</span>
+					<span class="pd-sold">{{data.goods_list.goods_salenum}}</span>
+				</div>
+			</li>
+		</ul>
+		</div>
   </div>
 </template>
 
@@ -53,38 +143,66 @@
 import axios from 'axios';
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.css';
+import { Indicator } from 'mint-ui';
 
 export default {
   name: 'home',
   data () {
     return {
    		advlist:[],
-   		datalist:[]
+   		datalist:[],
+   		adv_img:'',
+   		datamain:[]
 
     }
   },
   mounted(){
+  	Indicator.open({
+	  text: '加载中...',
+	  spinnerType: 'snake'
+	});
+
+
+
   	axios.get("lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1542863520124&act=index&op=index&key=7e7d04d349f9f724d45395cb52ab66c2").then(res=>{
-  		console.log(res.data.datas)
-  		this.advlist = res.data.datas.adv;
-  		this.$nextTick(()=>{
-  			new Swiper ('.swiper-container', {
-			  })        
-		})
-		  	}).catch(error=>{
-		  		console.log(error);
-		  	}),
-	axios.get("lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1542863520124&act=index&op=index&key=7e7d04d349f9f724d45395cb52ab66c2").then(res=>{
-  		console.log(res.data.datas.platform)
-  		this.datalist = res.data.datas.platform;
+  /*-------------------------------------------------------------------------------------------*/		
+  		this.datamain = res.data.datas;
+  		console.log('1111111',this.datamain);
+  	
+  		this.adv_img = this.datamain.adv[0].adv_image;
   		
+
+/*--------------------------------------------------------------------------------------*/
+  		this.advlist = res.data.datas.adv;
+
+
+
   		this.$nextTick(()=>{
   			new Swiper ('.swiper-container', {
 			  })        
 		})
+		
 		  	}).catch(error=>{
 		  		console.log(error);
 		  	})
+		  	Promise.all([axios.get("lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1542863520124&act=index&op=index&key=7e7d04d349f9f724d45395cb52ab66c2"),
+		  		axios.get("lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1542863520124&act=index&op=index&key=7e7d04d349f9f724d45395cb52ab66c2")]).then(res=>{
+		  		Indicator.close();
+		  	})
+	axios.get("lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1542863520124&act=index&op=index&key=7e7d04d349f9f724d45395cb52ab66c2").then(res=>{
+  		console.log('2222222222222',res.data.datas)
+  		this.datalist = res.data.datas;
+  		
+  		this.$nextTick(()=>{
+  				new Swiper ('.swiper-container', {
+
+				})        
+			})
+  		
+
+	  	}).catch(error=>{
+  			console.log(error);
+	  		})
 		  }
 
 		}
@@ -93,12 +211,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 #main{
-	height: 667px;
+	
 	background-color: #efefef;
 		.wrap{
 			width:100%;
 			height:205px;
+			border-bottom: 1px solid #faf3f3;
 			.conthd{
+				background-color: #f71433;
 				width:100%;
 				height:40px;
 				position: fixed;
@@ -140,7 +260,7 @@ export default {
 						left:10px;
 						width:14px;
 						height:16px;
-						background:url(../assets/search.jpg) no-repeat;
+						background: url(../assets/search.jpg) no-repeat;
 					}
 					.search_ipt{
 						width:200px;
@@ -166,10 +286,11 @@ export default {
 			} 
 
 	.swiper2{
-		.swiper-wrapper{
+		height:100px;
+		.swiper_2{
 
 			width:500px;
-			ul{
+			.ul1{
 				width:450px;
 				height:75px;
 				margin-left:16px;
@@ -177,7 +298,7 @@ export default {
 				margin-bottom: 10px;
 				text-align: center;
 				// background-color:blue;
-				li{	
+				.li1{	
 					float: left;
 					width:52px;
 					height:75px;
@@ -212,13 +333,13 @@ export default {
 
 	.triangle_bg{
 		width:100%;
-		
+		border-bottom:1px solid #f6f7f5;
 		position: relative;
 		.triangle{
 			width:20px;
 			height:20px;
 			position: absolute;
-			bottom:-4.5px;
+			bottom:-5px;
 			left:50%;
 			display: block;
 			margin-left:-20px;
@@ -236,6 +357,285 @@ export default {
 		}
 		
 	}
+
+	.swiper3{
+		height:170px;
+		.swiper_3{
+
+			width:642px;
+			.ul2{
+				height:75px;
+				text-align: center;
+				// background-color:blue;
+				.li2{	
+					float: left;
+					width:107px;
+					height:170px;
+					
+					.img_3{
+						width:96px;
+						height:96px;
+						vertical-align: middle;
+						display: block;
+						margin:10px auto 5px auto;
+					}
+					.s3_name{
+						width:87px;
+						height:33px;
+						font-size:12px;
+						overflow: hidden;
+						display: block;
+						margin:0 10px;
+						text-overflow: ellipsis; 
+					}
+					.span3{
+						font-size: 12px;
+					    color: rgb(242,48,48);
+					    display: block;
+					    width: 100%;
+					    text-align: center;
+					    padding-top: 2.5px;
+					    padding-bottom: 5px;
+
+					}
+
+				}
+
+				.li2-1{
+					float: left;
+					width:107px;
+					height:170px;
+					.img3-1{
+						width:100%;
+					}
+				}
+			}
+		}
+	}
+	.special{
+		width: 375px;
+		height: 25px;
+
+		.img4{
+			margin:10px auto 0 auto;
+			width:119px;
+			height: 15px;
+			display: block;
+
+		}
+	}
+
+	.triangle_bg2{
+		width:100%;
+		border-bottom:1px solid #f6f7f5;
+		position: relative;
+		.triangle{
+			width:20px;
+			height:20px;
+			position: absolute;
+			bottom:-5px;
+			left:50%;
+			display: block;
+			margin-left:-20px;
+
+		}
+		.tri_a2{
+
+			width:100%;
+			height:100px;
+			display: block;
+			.tri_img2{
+				height:100px;
+				vertical-align: middle;
+			}
+		}
+		
+	}
+
+	.swiper4{
+		height:170px;
+		.swiper_4{
+
+			width:642px;
+			.ul3{
+				height:75px;
+				text-align: center;
+				// background-color:blue;
+				.li3{	
+					float: left;
+					width:107px;
+					height:170px;
+					
+					.img_4{
+						width:96px;
+						height:96px;
+						vertical-align: middle;
+						display: block;
+						margin:10px auto 5px auto;
+					}
+					.s4_name{
+						width:87px;
+						height:33px;
+						font-size:12px;
+						overflow: hidden;
+						display: block;
+						margin:0 10px;
+						text-overflow: ellipsis; 
+					}
+					.span4{
+						font-size: 12px;
+					    color: rgb(242,48,48);
+					    display: block;
+					    width: 100%;
+					    text-align: center;
+					    padding-top: 2.5px;
+					    padding-bottom: 5px;
+
+					}
+				}
+				.li3-1{
+					float: left;
+					width:107px;
+					height:170px;
+					.img4-1{
+						width:100%;
+					}
+				}
+			}
+		}
+	}
+
+	.swiper5{
+		margin-top:20px;
+		width:100%;
+		height:47px;
+		.swiper_5{
+
+			.ul4{
+				display: flex;
+				text-align: center;
+				// background-color:blue;
+				.li4{
+					flex:1;
+					height:23px;
+					margin: 12px auto;
+					width:75px;
+					i{
+						float: left;
+					}
+					.s5_name{
+						width:75px;
+						float: left;
+						font-size:14px;
+						display: block;
+						text-align: center;
+						padding-right:5px;
+						overflow: hidden;
+						text-decoration: none;
+						outline: none;
+						color:#252525;
+						line-height:23px;
+					}
+				}
+			}
+		}
+	}
+
+	.electrical{
+		.el_line{
+			    width: 100%;
+			    overflow: hidden;
+			    height: 35px;
+			    line-height: 35px;
+			    display: block;
+		        text-decoration: none;
+			    color: #252525;
+			    outline: none;
+		      
+			.icon_l{
+			    width: 3px;
+			    height: 13px;
+			    background: #ff4e67;
+			    float: left;
+			    margin-top: 10px;
+			    margin-right: 10px;
+			}
+			.fl{
+			    font-size: 12px;
+			    color: #333;
+			    line-height: 35px;
+			    float: left;
+			}
+			.icon_more{
+			    background: url(../assets/youjiantou.jpg) no-repeat;
+			    width: 12px;
+			    height: 12px;
+			    background-size: contain;
+			    float: right;
+			    margin-top: 11px;
+			    margin-right: 10px;
+			    margin-left: 10px;
+			}
+			.fr{
+			    font-size: 12px;
+			    color: #999;
+			    line-height: 35px;
+		        float: right;
+			}
+
+		}
+		.el_ul{
+			    width: 100%;
+    			overflow: hidden;
+			.el_li{
+			    float: left;
+			    width: 50%;
+			    overflow: hidden;
+			    background: #fff;
+			    height: 257px;
+			    border-bottom: 1px solid #f0f0f0;
+			    box-sizing: border-box;
+			    .el_a{
+			    	    text-decoration: none;
+					    color: #252525;
+					    outline: none;
+			    	.el_img{
+
+			    	}
+			    }
+			}
+			.data-list li:nth-child(odd) {
+    		border-right: 1px solid #f0f0f0;
+				}
+			 .pd-name {
+			    font-size: 13px;
+			    overflow: hidden;
+			    height: 36px;
+			    line-height: 18px;
+			    margin-left: 10px;
+			    margin-right: 10px;
+			}	
+			.pd-flow{
+				    padding-left: 10px;
+				    padding-right: 10px;
+				    overflow: hidden;
+				    .pd-price{
+				    	    margin-top: 6.5px;
+						    color: rgb(242,48,48);
+						    font-size: 15px;
+						    float: left;
+				    }
+				    .pd-sold{
+				    	    font-size: 11px;
+						    margin-top: 6.5px;
+						    color: rgb(153,153,153);
+						    float: right;
+				    }
+			}
+		}
+		
+	}
+
 }
 
 </style>
