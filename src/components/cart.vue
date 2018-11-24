@@ -112,6 +112,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: 'cart',
   data () {
@@ -136,11 +137,8 @@ export default {
 			      	good_num:7,
 			      	good_price:'39.90',
 			      	good_Yprice:'99.9',
-			      	good_spec:[
-			      				{sp_name: "颜色", sp_value_name: "中灰"},
-			      			   	{sp_name: "尺码", sp_value_name: "115"}
-			      			   ],
-			      	isChecked:false,
+			      	good_spec:[{sp_name: "颜色", sp_value_name: "中灰"},{sp_name: "尺码", sp_value_name: "115"}],
+			      	isChecked:false
 			      	},/*第一件商品*/
 			      	{
 			      		good_id:12,
@@ -149,10 +147,7 @@ export default {
 			      		good_num:1,
 			      		good_price:'90',
 			      		good_Yprice:'9',
-			      		good_spec:[
-			      					{sp_name: "颜色", sp_value_name: "红色"},
-			      				   	{sp_name: "尺码", sp_value_name: "中"}
-			      				   ],
+			      		good_spec:[{sp_name: "颜色", sp_value_name: "红色"},{sp_name: "尺码", sp_value_name: "中"}],
 			      		isChecked:false,
 			      	}/*第二件商品*/
 			],
@@ -228,6 +223,28 @@ export default {
   created(){
 　		　this.mainHeight()
   },
+  mounted(){
+  		axios.get('/lecuntao/getCart.php',{
+  			params:{userid:1}
+  		 }).then(res=>{
+  		 	console.log(res);
+  		 	 this.datalist = res.data;
+  		 });
+  		 
+  },
+ // axios.get('/user', {
+ //     params: {
+ //       ID: 12345
+ //     }
+ //   })
+ //   .then(function (response) {
+ //     console.log(response);
+ //   })
+ //   .catch(function (error) {
+ //     console.log(error);
+ //   });
+
+ 
   methods:{
   	mainHeight(){
   		console.log(window.innerHeight)
