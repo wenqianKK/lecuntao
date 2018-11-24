@@ -31,7 +31,7 @@
 import axios  from "axios";
   
 export default {
-  name: 'classi',
+  name: 'classify',
   data () {
     return {
     data_list:[],
