@@ -26,12 +26,12 @@
 	<div class="swiper-container swiper2" style="background:white" >
 		<div class="swiper-wrapper swiper_2">
 			<ul class="ul1">
-				<li class="swiper-slide li1" v-for="data in datalist.platform.list">
+				<router-link class="swiper-slide li1" v-for="data in datalist" tag="li" to="-">
 					<img :src="data.cate_image" class="img_2"/>
 					<div class="s2_name">
 						{{data.cate_name}}
 					</div>
-				</li>
+				</router-link>
 			</ul>
 		</div>
 	</div>
@@ -50,7 +50,7 @@
     <div class="swiper-container swiper3" style="background:white" >
 		<div class="swiper-wrapper swiper_3" >
 			<ul class="ul2">
-				<li class="swiper-slide li2" v-for="data in datalist.le6ji.recommend_goods">
+				<li class="swiper-slide li2" v-for="data in lelist">
 					<img :src="data.goods_image" class="img_3"/>
 					<span class="s3_name">
 						{{data.goods_name}}
@@ -83,7 +83,7 @@
     <div class="swiper-container swiper4" style="background:white" >
 		<div class="swiper-wrapper swiper_4" >
 			<ul class="ul3">
-				<li class="swiper-slide li3" v-for="data in datalist.feature.recommend_goods">
+				<li class="swiper-slide li3" v-for="data in dataswiper4">
 					<img :src="data.goods_image" class="img_4"/>
 					<span class="s4_name">
 						{{data.goods_name}}
@@ -104,7 +104,7 @@
 	<div class="swiper-container swiper5" style="background:white" >
 		<div class="swiper-wrapper swiper_5">
 			<ul class="ul4">
-				<li class="swiper-slide li4" v-for="data in datalist.category">
+				<li class="swiper-slide li4" v-for="data in dataword">
 					<a href="javascript:;" class="s5_name">
 						
 						{{data.cate_name}}
@@ -124,14 +124,128 @@
 			</span>
 		</a> 
 		<ul class="el_ul">
-			<li class="el_li" v-for="data in datalist.category_goods">
+			<li class="el_li" v-for="data in dataelc">
 				<a href="javascript:;" title="" class="el_a">
-					<img :src="data.goods_list.goods_image" class="el_img"/> 
+					<img :src="data.goods_image" class="el_img"/> 
 				</a>
-				<p class="pd-name">{{data.goods_list.goods_name}}</p>
+				<p class="pd-name">{{data.goods_name}}</p>
 				<div class="pd-flow">
-					<span class="pd-price">{{data.goods_list.goods_price}}</span>
-					<span class="pd-sold">{{data.goods_list.goods_salenum}}</span>
+					<span class="pd-price">{{data.goods_price}} 元</span>
+					<span class="pd-sold">已售{{data.goods_salenum}}件</span>
+				</div>
+			</li>
+		</ul>
+		</div>
+		<!--  ---------食品汇------------ -->
+	<div class="electrical">
+		<a href="javascript:;" class="el_line">
+			<i class="icon_l"></i> 
+			<span class="fl">食品汇</span> 
+			<span>
+			<i class="icon_more"></i> 
+			<span class="fr">更多</span>
+			</span>
+		</a> 
+		<ul class="el_ul">
+			<li class="el_li" v-for="data in dataelc2">
+				<a href="javascript:;" title="" class="el_a">
+					<img :src="data.goods_image" class="el_img"/> 
+				</a>
+				<p class="pd-name">{{data.goods_name}}</p>
+				<div class="pd-flow">
+					<span class="pd-price">{{data.goods_price}} 元</span>
+					<span class="pd-sold">已售{{data.goods_salenum}}件</span>
+				</div>
+			</li>
+		</ul>
+		</div>
+		<!--  ---------米面油------------ -->
+	<div class="electrical">
+		<a href="javascript:;" class="el_line">
+			<i class="icon_l"></i> 
+			<span class="fl">米面油</span> 
+			<span>
+			<i class="icon_more"></i> 
+			<span class="fr">更多</span>
+			</span>
+		</a> 
+		<ul class="el_ul">
+			<li class="el_li" v-for="data in dataelc3">
+				<a href="javascript:;" title="" class="el_a">
+					<img :src="data.goods_image" class="el_img" @click="handdel(data)"/> 
+				</a>
+				<p class="pd-name">{{data.goods_name}}</p>
+				<div class="pd-flow">
+					<span class="pd-price">{{data.goods_price}} 元</span>
+					<span class="pd-sold">已售{{data.goods_salenum}}件</span>
+				</div>
+			</li>
+		</ul>
+		</div>
+		<!--  ---------服装城------------ -->
+	<div class="electrical">
+		<a href="javascript:;" class="el_line">
+			<i class="icon_l"></i> 
+			<span class="fl">服装城</span> 
+			<span>
+			<i class="icon_more"></i> 
+			<span class="fr">更多</span>
+			</span>
+		</a> 
+		<ul class="el_ul">
+			<li class="el_li" v-for="data in dataelc4">
+				<a href="javascript:;" title="" class="el_a">
+					<img :src="data.goods_image" class="el_img"/> 
+				</a>
+				<p class="pd-name">{{data.goods_name}}</p>
+				<div class="pd-flow">
+					<span class="pd-price">{{data.goods_price}} 元</span>
+					<span class="pd-sold">已售{{data.goods_salenum}}件</span>
+				</div>
+			</li>
+		</ul>
+		</div>
+		<!--  ---------日用品------------ -->
+	<div class="electrical">
+		<a href="javascript:;" class="el_line">
+			<i class="icon_l"></i> 
+			<span class="fl">日用品</span> 
+			<span>
+			<i class="icon_more"></i> 
+			<span class="fr">更多</span>
+			</span>
+		</a> 
+		<ul class="el_ul">
+			<li class="el_li" v-for="data in dataelc5">
+				<a href="javascript:;" title="" class="el_a">
+					<img :src="data.goods_image" class="el_img"/> 
+				</a>
+				<p class="pd-name">{{data.goods_name}}</p>
+				<div class="pd-flow">
+					<span class="pd-price">{{data.goods_price}} 元</span>
+					<span class="pd-sold">已售{{data.goods_salenum}}件</span>
+				</div>
+			</li>
+		</ul>
+		</div>
+		<!--  ---------热门推荐------------ -->
+	<div class="electrical">
+		<a href="javascript:;" class="el_line">
+			<i class="icon_l"></i> 
+			<span class="fl">热门推荐</span> 
+		</a> 
+		<ul class="el_ul" v-infinite-scroll="loadMore"
+		infinite-scroll-disabled="loading"
+		infinite-scroll-immediate-check="false"
+		infinite-scroll-distance="0">
+			<li class="el_li" v-for="data in dataelc6">
+				<a href="javascript:;" title="" class="el_a">
+					<img :src="data.goods_image" class="el_img"/> 
+				</a>
+				<p class="pd-name">{{data.goods_name}}</p>
+				<div class="pd-flow">
+					<span class="pd-price">{{data.goods_price}} 元</span>
+					<span class="pd-sold">已售{{data.goods_salenum}}件</span>
 				</div>
 			</li>
 		</ul>
@@ -145,16 +259,59 @@ import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.css';
 import { Indicator } from 'mint-ui';
 
+
+
+
 export default {
   name: 'home',
   data () {
     return {
-   		advlist:[],
+   		lelist:[],
    		datalist:[],
    		adv_img:'',
-   		datamain:[]
+   		datamain:[],
+   		dataswiper4:[],
+   		dataword:[],
+   		dataelc:[],
+   		dataelc2:[],
+   		dataelc3:[],
+   		dataelc4:[],
+   		dataelc5:[],
+   		dataelc6:[],
+   		loading:false,
+   		current:0
 
     }
+  },
+  methods:{
+  	loadMore(){
+  		console.log('到底了');
+  		this.current++;
+
+  		 axios({
+          url: 'lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1543029602346&act=goods&op=goodsRecom_new',
+          method: 'post',
+          data: {
+              page: this.current
+      },
+        transformRequest: [function (data) {
+          // Do whatever you want to transform the data
+          let ret = ''
+          for (let it in data) {
+            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+          }
+          return ret
+        }],
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).then(res=>{
+        
+        this.dataelc6 = [...this.dataelc6,...res.data.datas.list];
+        console.log(this.current);
+        
+      }) 
+  	}
   },
   mounted(){
   	Indicator.open({
@@ -167,9 +324,17 @@ export default {
   	axios.get("lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1542863520124&act=index&op=index&key=7e7d04d349f9f724d45395cb52ab66c2").then(res=>{
   /*-------------------------------------------------------------------------------------------*/		
   		this.datamain = res.data.datas;
-  		console.log('1111111',this.datamain);
-  	
+  		this.datalist = res.data.datas.platform.list;
   		this.adv_img = this.datamain.adv[0].adv_image;
+  		this.lelist = res.data.datas.le6ji.recommend_goods;
+  		this.dataswiper4 = res.data.datas.feature.recommend_goods;
+  		this.dataword = res.data.datas.category;
+  		this.dataelc = res.data.datas.category_goods[0].goods_list;
+  		this.dataelc2 = res.data.datas.category_goods[1].goods_list;
+  		this.dataelc3 = res.data.datas.category_goods[2].goods_list;
+  		this.dataelc4 = res.data.datas.category_goods[3].goods_list;
+  		this.dataelc5 = res.data.datas.category_goods[4].goods_list;
+  		
   		
 
 /*--------------------------------------------------------------------------------------*/
@@ -189,20 +354,18 @@ export default {
 		  		axios.get("lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1542863520124&act=index&op=index&key=7e7d04d349f9f724d45395cb52ab66c2")]).then(res=>{
 		  		Indicator.close();
 		  	})
-	axios.get("lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1542863520124&act=index&op=index&key=7e7d04d349f9f724d45395cb52ab66c2").then(res=>{
-  		console.log('2222222222222',res.data.datas)
-  		this.datalist = res.data.datas;
+		/*axios.get('lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1543029602346&act=goods&op=goodsRecom_new').then(res=>{
+				this.dataelc6 = res.data.datas.list;
   		
-  		this.$nextTick(()=>{
-  				new Swiper ('.swiper-container', {
+  				console.log('1111111',this.dataelc6);
+		}).catch(error=>{
+			console.log(error);
+		})*/
 
-				})        
-			})
-  		
 
-	  	}).catch(error=>{
-  			console.log(error);
-	  		})
+
+
+
 		  }
 
 		}
@@ -600,7 +763,9 @@ export default {
 					    color: #252525;
 					    outline: none;
 			    	.el_img{
-
+			    		    width: 150px;
+						    display: block;
+						    margin: 15px auto 20px;
 			    	}
 			    }
 			}
