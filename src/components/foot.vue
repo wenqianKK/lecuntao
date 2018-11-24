@@ -2,7 +2,7 @@
   <div >
     <ul>
       <router-link to="/home" tag="li" activeClass="active">首页</router-link>
-      <router-link to="/classify" tag="li" activeClass="active">分类</router-link>
+      <router-link to="/classi" tag="li" activeClass="active">分类</router-link>
       <router-link to="/cart" tag="li" activeClass="active">购物车</router-link>
       <router-link to="/my" tag="li" activeClass="active">我的</router-link>
     </ul>

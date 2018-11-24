@@ -22,7 +22,7 @@ export default {
   },
 
   components:{
-    foot,
+    foot
   },
 }
 </script>
