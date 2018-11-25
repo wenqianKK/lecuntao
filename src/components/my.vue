@@ -11,7 +11,10 @@ export default {
     return {
       msg: '我的'
     }
-  }
+  },
+  beforeMount(){
+    this.$store.commit("isShowfoot",true)
+  },
 }
 </script>
 

@@ -156,6 +156,11 @@ export default {
 
     }
   },
+  beforeMount(){
+    console.log('挂载之前');
+    this.$store.commit("isShowfoot",true)
+    console.log(this.$store.state.isShowfoot)
+  },
   mounted(){
   	Indicator.open({
 	  text: '加载中...',

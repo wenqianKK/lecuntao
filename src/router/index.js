@@ -13,7 +13,7 @@ import Search from "../components/search"
 import Le6 from "../components/le6"
 import Shipin from "../components/shipin"
 import Classi_child from "../components/classi_child"
-
+import Detail from "../components/detail"
 
 Vue.use(Router)
 
@@ -64,10 +64,15 @@ export default new Router({
     		path:"/cart",
     		component:Cart
     	},
+        {
+            path:"/detail",
+            component:Detail
+        },
     	{
     		path:"/my",
     		component:My
     	},
+
     	{
     		path:"*",
     		component:Home
