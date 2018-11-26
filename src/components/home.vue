@@ -50,8 +50,8 @@
     <div class="swiper-container swiper3" style="background:white" >
 		<div class="swiper-wrapper swiper_3" >
 			<ul class="ul2">
-				<li class="swiper-slide li2" v-for="data in lelist">
-					<img :src="data.goods_image" class="img_3"/>
+				<li class="swiper-slide li2" v-for="data in lelist" :key="data.goods_id">
+					<img :src="data.goods_image" class="img_3" @click="handel(data.goods_id)"/>
 					<span class="s3_name">
 						{{data.goods_name}}
 					</span>
@@ -83,8 +83,8 @@
     <div class="swiper-container swiper4" style="background:white" >
 		<div class="swiper-wrapper swiper_4" >
 			<ul class="ul3">
-				<li class="swiper-slide li3" v-for="data in dataswiper4">
-					<img :src="data.goods_image" class="img_4"/>
+				<li class="swiper-slide li3" v-for="data in dataswiper4" :key="data.goods_id">
+					<img :src="data.goods_image" class="img_4" @click="handel(data.goods_id)"/>
 					<span class="s4_name">
 						{{data.goods_name}}
 					</span>
@@ -124,9 +124,9 @@
 			</span>
 		</a> 
 		<ul class="el_ul">
-			<li class="el_li" v-for="data in dataelc">
+			<li class="el_li" v-for="data in dataelc" :key="data.goods_id">
 				<a href="javascript:;" title="" class="el_a">
-					<img :src="data.goods_image" class="el_img"/> 
+					<img :src="data.goods_image" class="el_img" @click="handel(data.goods_id)"/> 
 				</a>
 				<p class="pd-name">{{data.goods_name}}</p>
 				<div class="pd-flow">
@@ -147,9 +147,9 @@
 			</span>
 		</a> 
 		<ul class="el_ul">
-			<li class="el_li" v-for="data in dataelc2">
+			<li class="el_li" v-for="data in dataelc2" :key="data.goods_id">
 				<a href="javascript:;" title="" class="el_a">
-					<img :src="data.goods_image" class="el_img"/> 
+					<img :src="data.goods_image" class="el_img" @click="handel(data.goods_id)"/> 
 				</a>
 				<p class="pd-name">{{data.goods_name}}</p>
 				<div class="pd-flow">
@@ -170,9 +170,9 @@
 			</span>
 		</a> 
 		<ul class="el_ul">
-			<li class="el_li" v-for="data in dataelc3">
+			<li class="el_li" v-for="data in dataelc3" :key="data.goods_id">
 				<a href="javascript:;" title="" class="el_a">
-					<img :src="data.goods_image" class="el_img" @click="handdel(data)"/> 
+					<img :src="data.goods_image" class="el_img" @click="handel(data.goods_id)"/> 
 				</a>
 				<p class="pd-name">{{data.goods_name}}</p>
 				<div class="pd-flow">
@@ -193,9 +193,9 @@
 			</span>
 		</a> 
 		<ul class="el_ul">
-			<li class="el_li" v-for="data in dataelc4">
+			<li class="el_li" v-for="data in dataelc4" :key="data.goods_id">
 				<a href="javascript:;" title="" class="el_a">
-					<img :src="data.goods_image" class="el_img"/> 
+					<img :src="data.goods_image" class="el_img" @click="handel(data.goods_id)"/> 
 				</a>
 				<p class="pd-name">{{data.goods_name}}</p>
 				<div class="pd-flow">
@@ -216,9 +216,9 @@
 			</span>
 		</a> 
 		<ul class="el_ul">
-			<li class="el_li" v-for="data in dataelc5">
+			<li class="el_li" v-for="data in dataelc5" :key="data.goods_id">
 				<a href="javascript:;" title="" class="el_a">
-					<img :src="data.goods_image" class="el_img"/> 
+					<img :src="data.goods_image" class="el_img" @click="handel(data.goods_id)"/> 
 				</a>
 				<p class="pd-name">{{data.goods_name}}</p>
 				<div class="pd-flow">
@@ -238,9 +238,9 @@
 		infinite-scroll-disabled="loading"
 		infinite-scroll-immediate-check="false"
 		infinite-scroll-distance="0">
-			<li class="el_li" v-for="data in dataelc6">
+			<li class="el_li" v-for="data in dataelc6" :key="data.goods_id">
 				<a href="javascript:;" title="" class="el_a">
-					<img :src="data.goods_image" class="el_img"/> 
+					<img :src="data.goods_image" class="el_img" @click="handel(data.goods_id)"/> 
 				</a>
 				<p class="pd-name">{{data.goods_name}}</p>
 				<div class="pd-flow">
@@ -308,9 +308,14 @@ export default {
       }).then(res=>{
         
         this.dataelc6 = [...this.dataelc6,...res.data.datas.list];
-        console.log(this.current);
+        console.log(res.data.datas.list);
         
       }) 
+  	},
+
+  	handel(id){
+  		//编程式导航
+  		this.$router.push('/detail/'+id)
   	}
   },
   mounted(){
@@ -334,6 +339,7 @@ export default {
   		this.dataelc3 = res.data.datas.category_goods[2].goods_list;
   		this.dataelc4 = res.data.datas.category_goods[3].goods_list;
   		this.dataelc5 = res.data.datas.category_goods[4].goods_list;
+  		console.log(this.dataelc3)
   		
   		
 
