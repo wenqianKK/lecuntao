@@ -283,7 +283,7 @@ export default {
 
     }
   },
-  methods:{
+methods:{
   	loadMore(){
   		console.log('到底了');
   		this.current++;
@@ -318,6 +318,14 @@ export default {
   		this.$router.push('/detail/'+id)
   	}
   },
+beforeMount(){
+    console.log('挂载之前');
+    this.$store.commit("isShowfoot",true)
+    console.log(this.$store.state.isShowfoot)
+  },
+
+
+
   mounted(){
   	Indicator.open({
 	  text: '加载中...',

@@ -3,18 +3,27 @@
     <section>
       <router-view></router-view>
     </section>
-    <footer>
-      <foot></foot>
+	<footer>
+        <foot v-show="isShowfoot"></foot>
+        <footCart v-show="!isShowfoot"></footCart>
     </footer>
   </div>
 </template>
 
 <script>
 import foot from "./components/foot"
+import footCart from "./components/footCart";
 export default {
   name: 'App',
+  data(){
+    return{
+      
+    }
+  },
   computed:{
-
+    isShowfoot(){
+      return this.$store.state.isShowfoot;
+    }
   },
 
   watch:{
@@ -22,8 +31,13 @@ export default {
   },
 
   components:{
-    foot
+    foot,
+    footCart
   },
+  
+  mounted(){
+    // console.log(this.$store.state.isShowfoot)
+  }
 }
 </script>
 

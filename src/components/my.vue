@@ -179,7 +179,10 @@ export default {
     return {
       
     }
-  }
+  },
+  beforeMount(){
+    this.$store.commit("isShowfoot",true)
+  },
 }
 </script>
 

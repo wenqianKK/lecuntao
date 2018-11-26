@@ -38,6 +38,9 @@ export default {
   methods:{
    
   },
+  beforeMount(){
+    this.$store.commit("isShowfoot",true)
+  },
   mounted(){
     axios.get("lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1542870125905&act=mobile_cate&op=index").then(res=>{
     //console.log(res);

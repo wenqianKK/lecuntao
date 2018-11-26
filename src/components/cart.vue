@@ -223,6 +223,9 @@ export default {
   created(){
 　		　this.mainHeight()
   },
+  beforeMount(){
+    this.$store.commit("isShowfoot",true)
+  },
   mounted(){
   		axios.get('/lecuntao/getCart.php',{
   			params:{userid:1}
