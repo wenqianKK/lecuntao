@@ -3,7 +3,7 @@
     <section>
       <router-view></router-view>
     </section>
-    <footer>
+	<footer>
         <foot v-show="isShowfoot"></foot>
         <footCart v-show="!isShowfoot"></footCart>
     </footer>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import foot from "./components/foot";
+import foot from "./components/foot"
 import footCart from "./components/footCart";
 export default {
   name: 'App',
