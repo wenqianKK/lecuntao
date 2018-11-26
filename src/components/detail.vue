@@ -112,8 +112,7 @@ export default {
       detail_img:'',
       goods_recommend:[],
     }
-  },
-  
+  }, 
   methods:{
   	mainHeight(){
   		console.log(window.innerHeight)
