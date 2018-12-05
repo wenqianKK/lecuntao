@@ -18,7 +18,7 @@ module.exports = {
         },
 		"/lecuntao":{
             target:"http://localhost",
-            hosst:"localhost",
+            host:"localhost",
             changeOrigin:true
         }
 		

@@ -13,7 +13,8 @@ export default {
   name: 'home',
   data () {
     return {
-      msg: '首页' 
+      msg: '首页',
+      name:'zxy' 
   }
 },
 mounted(){

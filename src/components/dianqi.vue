@@ -9,7 +9,8 @@ export default {
   name: 'dianqi',
   data () {
     return {
-      msg: 'aaaaaaaa'
+      msg: 'aaaaaaaa',
+      name:'wq'
     }
   }
 }
